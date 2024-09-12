@@ -13,13 +13,13 @@ for f in files:
 files = only_files
 
 
-for filename in files:
+for file_name in files:
         
-    new_name = filename.replace(' ', '_')
+    new_name = file_name.replace(' ', '_')
     
-    old_file = os.path.join(folder_path, filename)
+    old_file = os.path.join(folder_path, file_name)
     new_file = os.path.join(folder_path, new_name)
     
     os.rename(old_file, new_file)
 
-    print(f"Renamed: {filename} -> {new_name}")
+    print(f"Renamed: {file_name} -> {new_name}")
