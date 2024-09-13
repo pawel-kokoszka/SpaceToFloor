@@ -1,17 +1,5 @@
 import os
 
-def add_zeros(number):
-    if number < 10 :
-        number_with_zeros = "00" + str(number)    
-    elif number >= 10 and number < 100 :
-        number_with_zeros = "0" + str(number)
-    elif number >= 100 :
-        number_with_zeros = str(number)        
-
-
-    return number_with_zeros
-
-
 def add_numeration():
     folder_path = os.path.dirname(os.path.abspath(__file__))
 
