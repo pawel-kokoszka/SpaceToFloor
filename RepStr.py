@@ -1,5 +1,6 @@
 import os
 import sys
+import fnmatch
 
 def replace_string(str_to_replace, replacing_str):
     
@@ -9,12 +10,12 @@ def replace_string(str_to_replace, replacing_str):
     files = [f for f in files if os.path.isfile(os.path.join(folder_path, f)) and str_to_replace in f]
 
     for file_name in files:        
-        new_name = file_name.replace(str_to_replace, replacing_str,1)
-        
-        old_file = os.path.join(folder_path, file_name)
-        new_file = os.path.join(folder_path, new_name)
-        
-        os.rename(old_file, new_file)
+            new_name = file_name.replace(str_to_replace, replacing_str,1)
+            
+            old_file = os.path.join(folder_path, file_name)
+            new_file = os.path.join(folder_path, new_name)
+            
+            os.rename(old_file, new_file)
 
 def main() :
     if len(sys.argv) != 3:
