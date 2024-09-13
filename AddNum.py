@@ -1,4 +1,5 @@
 import os
+import sys
 
 def add_zeros(number):
     if number < 10 :
@@ -12,7 +13,7 @@ def add_zeros(number):
     return number_with_zeros
 
 
-def add_numeration():
+def add_numeration(start_number):
     folder_path = os.path.dirname(os.path.abspath(__file__))
 
     files = os.listdir(folder_path)
@@ -27,7 +28,8 @@ def add_numeration():
     files = only_files
 
     if files.__len__() == 0 :
-        print("0 files detect to add numeration")
+        print("0 files with '_' to add numeration")
+        return 0
     else:
         print(files)
 
@@ -46,17 +48,32 @@ def add_numeration():
 
                     files_with_numeration.append(file_name)
 
+    if  max_number == 0 and start_number == 0 :        
+        file_enumerator = max_number + 1
+    elif  max_number == 0 and start_number == 1 :        
+        file_enumerator = max_number + 1    
+    elif start_number <= max_number:
+        print("Provided starting number already exist in the current folder!")
+        return 0
+    elif start_number > max_number:
+        file_enumerator = start_number
+    elif start_number == 0 :        
+        file_enumerator = max_number + 1
+
     files = [f for f in files if f not in files_with_numeration]
 
     new_files = []
-    file_enumerator = max_number + 1
+    
     for file_name in files:
         floor_index = file_name.find('_')
         name_with_number = file_name[:floor_index+1] + add_zeros(file_enumerator) + "_" + file_name[floor_index+1:]
         new_files.append(name_with_number)
         file_enumerator += 1 
 
-    print(new_files)
+    if len(new_files) == 0:
+        print("0 files detected to add numeration!")
+    else:
+        print(new_files)
 
     for index, file_name in enumerate(files):
             
@@ -70,7 +87,17 @@ def add_numeration():
         print(f"Renamed: {file_name} -> {new_name}")
 
 def main() :
-    add_numeration()
+    if len(sys.argv) > 3:
+        print("Please provide starting number after 'n' ")    
+    elif len(sys.argv) == 3 and ( sys.argv[1] == "n" and not sys.argv[2].isdigit()):
+        print("Please provide starting number after 'n' ") 
+    elif len(sys.argv) == 3 and (sys.argv[1] != "n"):
+        print("Please provide starting number after 'n' ")
+    elif len(sys.argv) == 3 and ( sys.argv[1] == "n" and sys.argv[2].isdigit()):
+        add_numeration(int(sys.argv[2])) 
+    else:
+        add_numeration(0)
+        
 
 if __name__ == '__main__':
     main()

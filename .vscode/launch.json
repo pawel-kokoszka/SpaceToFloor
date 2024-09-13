@@ -11,8 +11,8 @@
             "program": "${file}",
             "console": "integratedTerminal",
             "args": [
-                "old_name",
-                "new_name"
+                "n",
+                "80"
             ]
         }
     ]
