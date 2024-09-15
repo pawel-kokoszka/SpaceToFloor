@@ -13,7 +13,7 @@ def add_zeros(number):
     return number_with_zeros
 
 
-def add_numeration(start_number):
+def add_numeration(start_number=0):
     folder_path = os.path.dirname(os.path.abspath(__file__))
 
     files = os.listdir(folder_path)
@@ -48,17 +48,15 @@ def add_numeration(start_number):
 
                     files_with_numeration.append(file_name)
 
-    if  max_number == 0 and start_number == 0 :        
+#deiced what is starting number for unnumbered files in folder
+    if start_number == 0:
         file_enumerator = max_number + 1
-    elif  max_number == 0 and start_number == 1 :        
-        file_enumerator = max_number + 1    
-    elif start_number <= max_number:
-        print("Provided starting number already exist in the current folder!")
-        return 0
-    elif start_number > max_number:
-        file_enumerator = start_number
-    elif start_number == 0 :        
-        file_enumerator = max_number + 1
+    else:
+        if start_number > max_number:
+            file_enumerator = start_number
+        elif start_number < max_number + 1:
+            file_enumerator = max_number + 1        
+
 
     files = [f for f in files if f not in files_with_numeration]
 
@@ -96,7 +94,7 @@ def main() :
     elif len(sys.argv) == 3 and ( sys.argv[1] == "n" and sys.argv[2].isdigit()):
         add_numeration(int(sys.argv[2])) 
     else:
-        add_numeration(0)
+        add_numeration()
         
 
 if __name__ == '__main__':
