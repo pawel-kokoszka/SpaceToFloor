@@ -30,4 +30,4 @@ Scripts overview:
 
 ToDo:
 AddNum.py:
-- add functionality to detect first string of characters before underscore as key and keep/add separate numeration to files with different names in the same folder
+- add functionality to detect first string of characters before underscore as key and keep/add separate numeration to files with different names(keys) in the same folder
